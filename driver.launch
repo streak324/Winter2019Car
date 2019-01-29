@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+
+<launch>
+   
+  <!--<include file="$(find zed_wrapper)/launch/zed.launch"/>
+-->
+  <node name="talker" pkg="race" type="talker.py"/>
+  
+  <node name="teensy" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM0"/>
+  
+  <node name="lidar" pkg="urg_node" type="urg_node" args="_ip_address:='192.168.0.10'"/>  
+
+  <node name="driver" pkg="race" type="driver" output="screen"/>
+
+  <node name="kill_switch" pkg="race" type="kill.py" output="screen"/>
+
+ <!-- <node name="zed_edges" pkg="race" type="zedNav" output="screen"/>
+
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server"/>
+-->
+  <!--
+  <node name="test" pkg="race" type="testLidar.py" output="screen"/>
+  -->
+</launch>
